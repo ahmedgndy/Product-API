@@ -61,8 +61,51 @@ public class ProductRepository
 
     public ProductReview? GetReview(Guid productId, Guid reviewId)
     {
-        
+
         return _reviews.FirstOrDefault(r => r.ProductId == productId && r.Id == reviewId);
     }
 
+    //Curd methods 
+
+    public bool AddProduct(Product product)
+    {
+        _products.Add(product);
+        return true;
+    }
+
+    public bool AddProductReview(ProductReview review)
+    {
+        if (!_products.Any(p => p.Id == review.ProductId))
+            return false;
+        _reviews.Add(review);
+        return true;
+    }
+
+    public bool UpdateProduct(Product updatedProduct)
+    {
+
+        var existingProduct = _products.FirstOrDefault(p => p.Id == updatedProduct.Id);
+
+        if (existingProduct is null)
+            return false;
+        existingProduct.Name = updatedProduct.Name;
+        existingProduct.Price = updatedProduct.Price;
+
+        return true;
+    }
+
+    public bool DeleteProduct(Guid id)
+    {
+        var product = _products.FirstOrDefault(p => p.Id == id);
+
+        if (product is null)
+            return false;
+        _products.Remove(product);
+        _reviews.RemoveAll(r => r.ProductId == id);
+        return true;
+    }
+
+    public bool ExistsById(Guid id) => _products.Any(p => p.Id == id);
+
+    public bool ExistsByName(string name) => _products.Any(p=> String.Equals(p.Name ,name , StringComparison.OrdinalIgnoreCase));
 }
