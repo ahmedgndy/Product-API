@@ -6,7 +6,7 @@ public class ProductResponse
 
     public decimal Price { get; set; }
 
-    public List<ProductReviewResponse>? Reviews { get; set; } = default;
+    public List<ProductReviewResponse>? Reviews { get; set; } = new();
 
 
     private ProductResponse() { }

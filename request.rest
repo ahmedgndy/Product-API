@@ -10,3 +10,10 @@ OPTIONS  {{base}}/api/products
 ### HEAD Request (Check for resources Existents)
 
 HEAD   {{base}}/api/products/{{productId}}
+
+
+###GEt Request (get product by id)
+
+GET   {{base}}/api/products/{{productId}}?includeReview=true
+###
+GET   {{base}}/api/products/{{productId}}
