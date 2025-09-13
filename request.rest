@@ -30,3 +30,12 @@ Content-Type: application/json
     "name" : "ldddove",
     "price" : 124
 }
+
+###Update Product
+Put  {{base}}/api/products/{{productId}}
+Content-Type: application/json
+
+{
+    "name" : "product 1",
+    "price" : 124
+}

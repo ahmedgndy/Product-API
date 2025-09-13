@@ -1,4 +1,5 @@
 
+using System;
 using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
@@ -19,7 +20,7 @@ public class ProductController(ProductRepository repository) : ControllerBase
         return repository.ExistsById(productId) ? Ok() : NotFound();
     }
 
-    [HttpGet("{productId:Guid}" , Name ="GetProductById")]
+    [HttpGet("{productId:Guid}", Name = "GetProductById")]
 
     public ActionResult<ProductResponse> GetProductById(Guid productId, bool includeReview = false)
     {
@@ -72,12 +73,31 @@ public class ProductController(ProductRepository repository) : ControllerBase
         };
 
         repository.AddProduct(product);
-        
+
         return CreatedAtRoute(routeName: nameof(GetProductById),
                      routeValues: new { productID = product.Id },
                      value: ProductResponse.FromModel(product));
     }
-    
-        
+
+    [HttpPut("{productId:guid}")]
+
+    public IActionResult Put(Guid productId, UpdateProductRecord record)
+    {
+        var product = repository.GetProductById(productId);
+
+        if (product is null)
+            return NotFound($"Product With Id {productId} not found");
+        product.Name = record.Name;
+        product.Price = record.Price ;
+
+        var isSucceed = repository.UpdateProduct(product);
+        if (!isSucceed)
+            //500 fail form server side not clint
+            return StatusCode(500, $"Fail to update Product With id {productId}");
+
+        return NoContent();
+            
+
+    }
     
 }
