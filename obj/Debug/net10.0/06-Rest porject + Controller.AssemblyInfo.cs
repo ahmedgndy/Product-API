@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("06-Rest porject + Controller")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2d770d8297ead235e57cbb5262514daf9b4dab4d")]
 [assembly: System.Reflection.AssemblyProductAttribute("06-Rest porject + Controller")]
 [assembly: System.Reflection.AssemblyTitleAttribute("06-Rest porject + Controller")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

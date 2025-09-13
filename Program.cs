@@ -1,6 +1,7 @@
 var builder = WebApplication.CreateBuilder(args);
 //add services 
 builder.Services.AddControllers();
+builder.Services.AddSingleton<ProductRepository>();
 
 var app = builder.Build();
 

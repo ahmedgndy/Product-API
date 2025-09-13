@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\El-Wattaneya\\Desktop\\mini projects\\06-Rest porject + Controller\\06-Rest porject + Controller.csproj": {}
+    "C:\\Users\\El-Wattaneya\\Desktop\\mini projects\\06-Rest porject + Controller\\06-Rest porject + Controller.csproj": {}
   },
   "projects": {
-    "c:\\Users\\El-Wattaneya\\Desktop\\mini projects\\06-Rest porject + Controller\\06-Rest porject + Controller.csproj": {
+    "C:\\Users\\El-Wattaneya\\Desktop\\mini projects\\06-Rest porject + Controller\\06-Rest porject + Controller.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\El-Wattaneya\\Desktop\\mini projects\\06-Rest porject + Controller\\06-Rest porject + Controller.csproj",
+        "projectUniqueName": "C:\\Users\\El-Wattaneya\\Desktop\\mini projects\\06-Rest porject + Controller\\06-Rest porject + Controller.csproj",
         "projectName": "06-Rest porject + Controller",
-        "projectPath": "c:\\Users\\El-Wattaneya\\Desktop\\mini projects\\06-Rest porject + Controller\\06-Rest porject + Controller.csproj",
+        "projectPath": "C:\\Users\\El-Wattaneya\\Desktop\\mini projects\\06-Rest porject + Controller\\06-Rest porject + Controller.csproj",
         "packagesPath": "C:\\Users\\El-Wattaneya\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\El-Wattaneya\\Desktop\\mini projects\\06-Rest porject + Controller\\obj\\",
+        "outputPath": "C:\\Users\\El-Wattaneya\\Desktop\\mini projects\\06-Rest porject + Controller\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
