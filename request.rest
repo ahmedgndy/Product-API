@@ -1,6 +1,12 @@
      
 @base = https://localhost:7175
 
+@productId = 2779ee47-10b0-4bd7-8342-404006aa1392
+
 ### options Request 
 
 OPTIONS  {{base}}/api/products
+
+### HEAD Request (Check for resources Existents)
+
+HEAD   {{base}}/api/products/{{productId}}
