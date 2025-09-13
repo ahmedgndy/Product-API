@@ -1,2 +1,6 @@
      
 @base = https://localhost:7175
+
+### options Request 
+
+OPTIONS  {{base}}/api/products
