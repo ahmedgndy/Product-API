@@ -17,3 +17,16 @@ HEAD   {{base}}/api/products/{{productId}}
 GET   {{base}}/api/products/{{productId}}?includeReview=true
 ###
 GET   {{base}}/api/products/{{productId}}
+
+### GET page for pagination 
+
+GET   {{base}}/api/products?page=1&PageSize=4
+
+###Create product
+post  {{base}}/api/products
+Content-Type: application/json
+
+{
+    "name" : "ldddove",
+    "price" : 124
+}

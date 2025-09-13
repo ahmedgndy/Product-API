@@ -19,24 +19,65 @@ public class ProductController(ProductRepository repository) : ControllerBase
         return repository.ExistsById(productId) ? Ok() : NotFound();
     }
 
-    [HttpGet("{productId:Guid}")]
+    [HttpGet("{productId:Guid}" , Name ="GetProductById")]
 
-    public ActionResult<ProductResponse> GetProductById(Guid productId,bool includeReview = false)
+    public ActionResult<ProductResponse> GetProductById(Guid productId, bool includeReview = false)
     {
-        //product 
         var product = repository.GetProductById(productId);
 
-        //maping htis product 
         if (product is null)
             return NotFound();
 
-        var productResponse = ProductResponse.FromModel(product);
+        List<ProductReview>? reviews = null;
 
-        if (includeReview)
-        {
-            var reviews = repository.GetProductReviews(productId);
-            productResponse.Reviews = ProductReviewResponse.FromModel(reviews).ToList();
-        }
+        if (includeReview == true)
+            reviews = repository.GetProductReviews(productId);
+
+        var productResponse = ProductResponse.FromModel(product, reviews);
         return productResponse;
     }
+
+    [HttpGet]
+
+    public IActionResult GetPaged(int page, int pageSize)
+    {
+        page = Math.Max(1, page);
+        pageSize = Math.Clamp(pageSize, 1, 100);
+
+
+        var items = repository.GetProductsPage(page, pageSize);
+        var totalCount = repository.GetProductsCount();
+        var productResponse = ProductResponse.FromModel(items);
+
+        var pageResponse = PageResponse<ProductResponse>.Create(
+                                         productResponse
+                                         , pageSize,
+                                          totalCount,
+                                           page);
+        return Ok(pageResponse);
+    }
+
+    [HttpPost]
+    public IActionResult CreateProduct(CreateProductRecord record)
+    {
+
+        if (repository.ExistsByName(record.Name))
+            return Conflict($"A Product with The name {record.Name} already Exist");
+
+        var product = new Product
+        {
+            Id = Guid.NewGuid(),
+            Name = record.Name,
+            Price = record.Price
+        };
+
+        repository.AddProduct(product);
+        
+        return CreatedAtRoute(routeName: nameof(GetProductById),
+                     routeValues: new { productID = product.Id },
+                     value: ProductResponse.FromModel(product));
+    }
+    
+        
+    
 }

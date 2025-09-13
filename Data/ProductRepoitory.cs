@@ -33,7 +33,7 @@ public class ProductRepository
 
     public int GetProductsCount() => _products.Count;
 
-    public List<Product> GetProductsCount(int page = 1, int pageSize = 10)
+    public List<Product> GetProductsPage(int page = 1, int pageSize = 10)
     {
         var products = _products.Skip((page - 1) * pageSize)
                                 .Take(pageSize)
