@@ -3,8 +3,10 @@ bin/
 obj/
 out/
 
-# Visual Studio files
+# Visual Studio Code settings
 .vscode/
+
+# Visual Studio files
 *.user
 *.suo
 
