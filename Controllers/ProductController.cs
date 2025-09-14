@@ -1,5 +1,7 @@
 
 using System;
+using System.Diagnostics.Contracts;
+using Microsoft.AspNetCore.Authentication.OAuth.Claims;
 using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
@@ -88,7 +90,7 @@ public class ProductController(ProductRepository repository) : ControllerBase
         if (product is null)
             return NotFound($"Product With Id {productId} not found");
         product.Name = record.Name;
-        product.Price = record.Price ;
+        product.Price = record.Price;
 
         var isSucceed = repository.UpdateProduct(product);
         if (!isSucceed)
@@ -96,7 +98,19 @@ public class ProductController(ProductRepository repository) : ControllerBase
             return StatusCode(500, $"Fail to update Product With id {productId}");
 
         return NoContent();
-            
+    }
+
+    [HttpDelete("{productId:guid}")]
+
+    public IActionResult Delete(Guid productId)
+    {
+        if (!repository.ExistsById(productId))
+            return NotFound($"Not found Product With id : {productId}");
+
+        var isDeleted = repository.DeleteProduct(productId);
+        if (!isDeleted)
+            return StatusCode(500, "Failed To Delete product");
+        return NoContent();
 
     }
     

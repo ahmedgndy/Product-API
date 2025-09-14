@@ -39,3 +39,7 @@ Content-Type: application/json
     "name" : "product 1",
     "price" : 124
 }
+
+
+###Delete a product 
+DELETE {{base}}/api/products/{{productId}}
