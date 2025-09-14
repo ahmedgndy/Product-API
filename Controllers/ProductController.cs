@@ -153,5 +153,19 @@ public class ProductController(ProductRepository repository) : ControllerBase
 
         return PhysicalFile(path, "text/csv", "products_From_1_to_100_Physical.csv");
     }
-    
+
+    [HttpGet("product-legacy")]
+
+    public IActionResult GetRedirection()
+    {
+
+        return Redirect("/api/products/temp-products");
+
+    }
+
+    [HttpGet("temp-products")]
+    public IActionResult TempProducts()
+    {
+        return Ok(new {message ="you are in the temp endpoint . chill ."});
+    }
 }

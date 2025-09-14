@@ -54,3 +54,6 @@ Get  {{base}}/api/products/csv
 
 ### Get products as CSV file (physical)
 Get  {{base}}/api/products/physical
+
+### redirection
+Get  {{base}}/api/products/product-legacy
