@@ -43,3 +43,11 @@ Content-Type: application/json
 
 ###Delete a product 
 DELETE {{base}}/api/products/{{productId}}
+
+
+###Post Request for simulate a long-running Process
+
+POST {{base}}/api/products/process
+
+### Get products as CSV file
+Get  {{base}}/api/products/csv

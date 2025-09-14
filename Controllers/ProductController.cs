@@ -1,6 +1,7 @@
 
 using System;
 using System.Diagnostics.Contracts;
+using System.Text;
 using Microsoft.AspNetCore.Authentication.OAuth.Claims;
 using Microsoft.AspNetCore.Mvc;
 
@@ -120,9 +121,28 @@ public class ProductController(ProductRepository repository) : ControllerBase
     {
         var jopId = Guid.NewGuid();
 
-        return Accepted($"/api/products/status/{jopId}" ,
-            new {jopId , status = "Processing"}
+        return Accepted($"/api/products/status/{jopId}",
+            new { jopId, status = "Processing" }
         );
+    }
+
+    [HttpGet("csv")]
+
+    public IActionResult GetProductsCSV()
+    {
+        var product = repository.GetProductsPage(1, 200);
+        var cvsBuilder = new StringBuilder();
+
+        cvsBuilder.AppendLine("ID,Name,Price");
+
+        product.ForEach(p => cvsBuilder.AppendLine($"{p.Id},{p.Name},{p.Price}"));
+
+        //convert string to array of bytes
+        var fileBytes = Encoding.UTF32.GetBytes(cvsBuilder.ToString());
+
+        return File(fileBytes, "text/csv", "products_From_1_to_100.csv");
+
+
     }
     
 }
