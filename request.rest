@@ -51,3 +51,6 @@ POST {{base}}/api/products/process
 
 ### Get products as CSV file
 Get  {{base}}/api/products/csv
+
+### Get products as CSV file (physical)
+Get  {{base}}/api/products/physical

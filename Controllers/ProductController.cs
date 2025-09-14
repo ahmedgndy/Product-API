@@ -144,5 +144,14 @@ public class ProductController(ProductRepository repository) : ControllerBase
 
 
     }
+
+    [HttpGet("physical")]
+
+    public IActionResult GetPhysicalFile()
+    {
+        var path = Path.Combine(Directory.GetCurrentDirectory(), "File", "physicalFile.csv");
+
+        return PhysicalFile(path, "text/csv", "products_From_1_to_100_Physical.csv");
+    }
     
 }
