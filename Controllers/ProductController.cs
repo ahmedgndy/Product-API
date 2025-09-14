@@ -113,5 +113,16 @@ public class ProductController(ProductRepository repository) : ControllerBase
         return NoContent();
 
     }
+
+    [HttpPost("process")]
+
+    public IActionResult ProcessAsync()
+    {
+        var jopId = Guid.NewGuid();
+
+        return Accepted($"/api/products/status/{jopId}" ,
+            new {jopId , status = "Processing"}
+        );
+    }
     
 }
